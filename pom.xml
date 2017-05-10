@@ -7,6 +7,31 @@
     <groupId>com.adamdierkens</groupId>
     <artifactId>snapshot4j</artifactId>
     <version>1.0.0-SNAPSHOT</version>
+
+    <name>com.adamdierkens:snapshot4j</name>
+    <description>A snapshot testing library for Java</description>
+    <url>https://github.com/adierkens/snapshot4j</url>
+
+    <licenses>
+        <license>
+            <name>MIT</name>
+            <url>https://raw.githubusercontent.com/sonatype/nexus-gem/master/MIT-LICENSE</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Adam Dierkens</name>
+            <email>adam@dierkens.com</email>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git@github.com:adierkens/snapshot4j.git</connection>
+        <developerConnection>scm:git:git@github.com:adierkens/snapshot4j.git</developerConnection>
+        <url>git@github.com:adierkens/snapshot4j.git</url>
+    </scm>
+
     <build>
         <plugins>
             <plugin>
