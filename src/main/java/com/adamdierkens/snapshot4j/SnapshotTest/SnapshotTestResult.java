@@ -1,4 +1,4 @@
-package com.intuit.fuego.SnapshotTest;
+package com.adamdierkens.snapshot4j.SnapshotTest;
 
 import com.google.gson.JsonElement;
 

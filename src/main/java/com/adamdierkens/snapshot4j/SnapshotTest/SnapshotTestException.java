@@ -1,4 +1,4 @@
-package com.intuit.fuego.SnapshotTest;
+package com.adamdierkens.snapshot4j.SnapshotTest;
 
 public class SnapshotTestException extends Exception {
     public SnapshotTestException() {}
