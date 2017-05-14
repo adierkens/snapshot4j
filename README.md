@@ -1,4 +1,5 @@
-# snapshot4j
+# snapshot4j [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.adamdierkens/snapshot4j/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.adamdierkens/snapshot4j)
+
 > A snapshot testing library for Java
 
 
