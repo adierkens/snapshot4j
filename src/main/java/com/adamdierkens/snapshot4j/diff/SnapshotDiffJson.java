@@ -11,6 +11,8 @@ import java.util.Map;
  */
 public class SnapshotDiffJson extends SnapshotDiff {
 
+    private static final Gson PRETTY_PRINT_GSON = new GsonBuilder().setPrettyPrinting().create();
+
     private JsonElement expected;
     private JsonElement result;
 
@@ -47,9 +49,8 @@ public class SnapshotDiffJson extends SnapshotDiff {
 
     @Override
     public String prettyPrintDiff() {
-        Gson prettyPrintGson = new GsonBuilder().setPrettyPrinting().create();
-        List<String> expectedLines = Arrays.asList(prettyPrintGson.toJson(this.expected).split("\n"));
-        List<String> resultLines = Arrays.asList(prettyPrintGson.toJson(this.result).split("\n"));
+        List<String> expectedLines = Arrays.asList(PRETTY_PRINT_GSON.toJson(this.expected).split("\n"));
+        List<String> resultLines = Arrays.asList(PRETTY_PRINT_GSON.toJson(this.result).split("\n"));
         return prettyPrintDiff(expectedLines, resultLines);
     }
 }
