@@ -10,7 +10,7 @@
 
     <groupId>com.adamdierkens</groupId>
     <artifactId>snapshot4j</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.1.0</version>
 
     <name>com.adamdierkens:snapshot4j</name>
     <description>A snapshot testing library for Java</description>
@@ -34,7 +34,8 @@
         <connection>scm:git:git@github.com:adierkens/snapshot4j.git</connection>
         <developerConnection>scm:git:git@github.com:adierkens/snapshot4j.git</developerConnection>
         <url>git@github.com:adierkens/snapshot4j.git</url>
-    </scm>
+      <tag>v1.1.0</tag>
+  </scm>
 
     <distributionManagement>
         <!-- Repository for snapshots -->
