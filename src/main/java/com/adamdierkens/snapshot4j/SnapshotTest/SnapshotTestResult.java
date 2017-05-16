@@ -4,9 +4,6 @@ import com.adamdierkens.snapshot4j.diff.SnapshotDiff;
 import com.adamdierkens.snapshot4j.diff.SnapshotDiffJson;
 import com.adamdierkens.snapshot4j.diff.SnapshotDiffText;
 import com.google.gson.JsonElement;
-import org.fusesource.jansi.Ansi;
-
-import java.util.List;
 
 class SnapshotTestResult {
 
@@ -34,25 +31,8 @@ class SnapshotTestResult {
         this.resultType = SnapshotTestResultType.JSON;
     }
 
-    private JsonElement getResultElement() {
-        return resultElement;
-    }
-
-    private String getResultString() {
-        return resultString;
-    }
-
     SnapshotTestResultType getResultType() {
         return resultType;
-    }
-
-    private void appendLines(List<String> lines, String prefix, StringBuilder stringBuilder, Ansi.Color color) {
-        String _prefix = "";
-        for (String line : lines) {
-            stringBuilder.append(_prefix);
-            stringBuilder.append(Ansi.ansi().fg(color).a(prefix).a(line).reset().toString());
-            _prefix = "\n";
-        }
     }
 
     SnapshotTestException compare(SnapshotTestResult other) {
