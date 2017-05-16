@@ -1,5 +1,8 @@
 package com.adamdierkens.snapshot4j.SnapshotTest;
 
+import com.adamdierkens.snapshot4j.diff.SnapshotDiff;
+import com.adamdierkens.snapshot4j.diff.SnapshotDiffJson;
+import com.adamdierkens.snapshot4j.diff.SnapshotDiffText;
 import com.google.gson.JsonElement;
 
 class SnapshotTestResult {
@@ -28,14 +31,6 @@ class SnapshotTestResult {
         this.resultType = SnapshotTestResultType.JSON;
     }
 
-    private JsonElement getResultElement() {
-        return resultElement;
-    }
-
-    private String getResultString() {
-        return resultString;
-    }
-
     SnapshotTestResultType getResultType() {
         return resultType;
     }
@@ -51,7 +46,8 @@ class SnapshotTestResult {
                 return null;
             }
 
-            return new SnapshotTestException(String.format("Got json object %s but expected %s", other.resultElement, this.resultElement));
+            SnapshotDiff diff = new SnapshotDiffJson(resultElement, other.resultElement);
+            return new SnapshotTestException(diff.prettyPrintDiff());
 
         } else if (this.resultType.equals(SnapshotTestResultType.String)) {
 
@@ -59,7 +55,8 @@ class SnapshotTestResult {
                 return null;
             }
 
-            return new SnapshotTestException(String.format("Got string %s but expected %s", other.resultString, this.resultString));
+            SnapshotDiff diff = new SnapshotDiffText(resultString, other.resultString);
+            return new SnapshotTestException(diff.prettyPrintDiff());
         }
 
         return null;

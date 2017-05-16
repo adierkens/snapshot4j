@@ -97,7 +97,6 @@ public class SnapshotTestTest {
         arr.add("definitely not the same thing");
         obj.add("randomThing", arr);
         obj.addProperty("otherRandomThing", "some other text");
-
         snapshotTest.takeSnapshot("jsonTest", obj);
     }
 }
