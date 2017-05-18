@@ -30,7 +30,9 @@ public abstract class SnapshotDiff {
         StringBuilder diffResult = new StringBuilder("\n");
         List<Delta<String>> deltas = DiffUtils.diff(expected, actual).getDeltas();
 
-        for (Integer line=0; line < expected.size(); line++) {
+        Integer line = 0;
+
+        while(line < expected.size()) {
             boolean alreadyPrinted = false;
 
             for (Delta<String> delta : deltas) {
@@ -39,9 +41,11 @@ public abstract class SnapshotDiff {
                     if (delta.getType().equals(Delta.TYPE.CHANGE)) {
                         diffResult = appendDeleted(diffResult, delta.getOriginal().getLines()).append("\n");
                         diffResult = appendAdded(diffResult, delta.getRevised().getLines());
+                        line += delta.getOriginal().getLines().size();
                         alreadyPrinted = true;
                     } else if (delta.getType().equals(Delta.TYPE.DELETE)) {
                         diffResult = appendDeleted(diffResult, delta.getOriginal().getLines());
+                        line += delta.getOriginal().getLines().size();
                         alreadyPrinted = true;
                     } else if (delta.getType().equals(Delta.TYPE.INSERT)) {
                         diffResult = appendAdded(diffResult, delta.getRevised().getLines()).append("\n");
@@ -53,6 +57,7 @@ public abstract class SnapshotDiff {
 
             if (!alreadyPrinted) {
                 diffResult.append(" ").append(expected.get(line));
+                line += 1;
             }
             diffResult.append("\n");
         }
