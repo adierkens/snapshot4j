@@ -3,9 +3,6 @@ package com.adamdierkens.snapshot4j.diff;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by adierkens on 5/16/17.
- */
 public class SnapshotDiffText extends SnapshotDiff {
 
     private String expected;

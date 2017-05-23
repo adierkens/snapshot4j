@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import difflib.StringUtills;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -83,8 +84,19 @@ public class SnapshotTest {
         Files.write(file, lines, Charset.forName("UTF-8"));
     }
 
+    private String join(List<Object> strings, String seperator) {
+        String prefix = "";
+        StringBuilder sb = new StringBuilder();
+        for (Object str : strings) {
+            sb.append(prefix);
+            sb.append(str);
+            prefix = seperator;
+        }
+        return sb.toString();
+    }
+
     private SnapshotTestResult readSnapshot(String testName) throws IOException {
-        List<Object> lines = new ArrayList<>();
+        List<Object> lines;
         Path file = Paths.get(snapshotDir.getAbsolutePath(), testName);
 
         try (Stream<String> stream = Files.lines(file)) {
@@ -93,15 +105,17 @@ public class SnapshotTest {
             return new SnapshotTestResult();
         }
 
-        if (lines.size() != 2) {
-            LOG.warn("Result stored incorrectly");
+        if (lines.size() == 1) {
             return new SnapshotTestResult();
         }
 
         String type = (String) lines.get(0);
-        String results = (String) lines.get(1);
+        String results = null;
+        if (lines.size() > 1) {
+            results = join(lines.subList(1, lines.size()), "\n");
+        }
 
-        if (type.equals(SnapshotTestResult.SnapshotTestResultType.Empty.toString())) {
+        if (type.equals(SnapshotTestResult.SnapshotTestResultType.Empty.toString()) || results == null) {
             return new SnapshotTestResult();
         } else if (type.equals(SnapshotTestResult.SnapshotTestResultType.String.toString())) {
             return new SnapshotTestResult(results);

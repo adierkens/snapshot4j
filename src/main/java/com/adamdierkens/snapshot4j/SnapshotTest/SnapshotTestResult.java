@@ -3,9 +3,13 @@ package com.adamdierkens.snapshot4j.SnapshotTest;
 import com.adamdierkens.snapshot4j.diff.SnapshotDiff;
 import com.adamdierkens.snapshot4j.diff.SnapshotDiffJson;
 import com.adamdierkens.snapshot4j.diff.SnapshotDiffText;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 
 class SnapshotTestResult {
+
+    private static final Gson PP_GSON = new GsonBuilder().setPrettyPrinting().create();
 
     enum SnapshotTestResultType {
         JSON,
@@ -84,7 +88,7 @@ class SnapshotTestResult {
         } else if (resultType.equals(SnapshotTestResultType.String)) {
             return resultString;
         } else {
-            return resultElement.toString();
+            return PP_GSON.toJson(resultElement);
         }
     }
 }

@@ -99,4 +99,21 @@ public class SnapshotTestTest {
         obj.addProperty("otherRandomThing", "some other text");
         snapshotTest.takeSnapshot("jsonTest", obj);
     }
+
+    @Test
+    public void workingMultilineString() throws Exception {
+        String testString = "foo\nbar\nbaz";
+        snapshotTest.takeSnapshot("multiLineString", testString);
+    }
+
+    @Test
+    public void workingMultilineJSON() throws Exception {
+        JsonObject obj = new JsonObject();
+        JsonArray arr = new JsonArray();
+        arr.add("firstRandomThing");
+        obj.add("randomThing", arr);
+        obj.addProperty("otherRandomThing", "some other text");
+
+        snapshotTest.takeSnapshot("multiLineJson", obj);
+    }
 }
