@@ -95,7 +95,7 @@ public class SnapshotTest {
         return sb.toString();
     }
 
-    private SnapshotTestResult readSnapshot(String testName) throws IOException {
+    SnapshotTestResult readSnapshot(String testName) throws IOException {
         List<Object> lines;
         Path file = Paths.get(snapshotDir.getAbsolutePath(), testName);
 
