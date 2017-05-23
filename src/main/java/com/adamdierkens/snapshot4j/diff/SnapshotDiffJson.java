@@ -6,9 +6,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by adierkens on 5/16/17.
- */
 public class SnapshotDiffJson extends SnapshotDiff {
 
     private static final Gson PRETTY_PRINT_GSON = new GsonBuilder().setPrettyPrinting().create();

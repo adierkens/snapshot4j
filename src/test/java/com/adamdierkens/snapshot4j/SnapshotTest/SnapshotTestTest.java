@@ -3,9 +3,7 @@ package com.adamdierkens.snapshot4j.SnapshotTest;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 
 import java.io.File;
 import java.math.BigInteger;
@@ -98,5 +96,27 @@ public class SnapshotTestTest {
         obj.add("randomThing", arr);
         obj.addProperty("otherRandomThing", "some other text");
         snapshotTest.takeSnapshot("jsonTest", obj);
+    }
+
+    @Test
+    public void workingMultilineString() throws Exception {
+        String testString = "foo\nbar\nbaz";
+        snapshotTest.takeSnapshot("multiLineString", testString);
+    }
+
+    @Test
+    public void workingMultilineJSON() throws Exception {
+        JsonObject obj = new JsonObject();
+        JsonArray arr = new JsonArray();
+        arr.add("firstRandomThing");
+        obj.add("randomThing", arr);
+        obj.addProperty("otherRandomThing", "some other text");
+
+        snapshotTest.takeSnapshot("multiLineJson", obj);
+    }
+
+    @Test
+    public void readEmptyStringSnapshot() throws Exception {
+        Assert.assertEquals(SnapshotTestResult.SnapshotTestResultType.Empty, snapshotTest.readSnapshot("stringEmpty").getResultType());
     }
 }

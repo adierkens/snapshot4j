@@ -5,12 +5,9 @@ import com.google.gson.JsonParser;
 import org.junit.Assert;
 import org.junit.Test;
 
-/**
- * Created by adierkens on 5/17/17.
- */
 public class SnapshotDiffJsonTest {
     @Test
-    public void prettyPrintDiff() throws Exception {
+    public void prettyPrintJsonDiff() throws Exception {
 
         JsonParser parser = new JsonParser();
         JsonElement actual = parser.parse("{\"status\":\"success\",\"data\":{\"_Cached\":[]}}");

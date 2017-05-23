@@ -1,0 +1,7 @@
+JSON
+{
+  "randomThing": [
+    "firstRandomThing"
+  ],
+  "otherRandomThing": "some other text"
+}
