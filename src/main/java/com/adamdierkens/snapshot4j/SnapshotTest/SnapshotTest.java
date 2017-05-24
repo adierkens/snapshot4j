@@ -117,7 +117,6 @@ public class SnapshotTest {
             results = join(lines.subList(1, lines.size()), "\n");
         }
 
-
         if (type.equals(ResultType.Empty.toString()) || results == null) {
             return EmptyResult.INSTANCE;
         } else if (type.equals(ResultType.String.toString())) {
