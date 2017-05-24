@@ -1,9 +1,13 @@
 package com.adamdierkens.snapshot4j.SnapshotTest;
 
+import com.adamdierkens.snapshot4j.result.ResultType;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import org.junit.*;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.io.File;
 import java.math.BigInteger;
@@ -117,6 +121,6 @@ public class SnapshotTestTest {
 
     @Test
     public void readEmptyStringSnapshot() throws Exception {
-        Assert.assertEquals(SnapshotTestResult.SnapshotTestResultType.Empty, snapshotTest.readSnapshot("stringEmpty").getResultType());
+        Assert.assertEquals(ResultType.Empty, snapshotTest.readSnapshot("stringEmpty").getType());
     }
 }
