@@ -23,24 +23,24 @@ public class SnapshotTest {
         this.snapshotDir = saveDir;
     }
 
-    public static void takeSnapshot(File saveDir, String testName, JsonElement testInput) throws SnapshotTestException, IOException {
-        SnapshotTest snapshotTest = new SnapshotTest(saveDir);
-        snapshotTest.takeSnapshot(testName, testInput);
-    }
-
-    public static void takeSnapshot(File saveDir, String testName, String testInput) throws SnapshotTestException, IOException {
-        SnapshotTest snapshotTest = new SnapshotTest(saveDir);
-        snapshotTest.takeSnapshot(testName, testInput);
-    }
-
     public void takeSnapshot(String testName, JsonElement testInput) throws SnapshotTestException, IOException {
         SnapshotResult actual = SnapshotResultFactory.create(testInput);
         this.takeSnapshot(testName, actual);
     }
 
+    public void takeSnapshot(String testName, String snapshotName, JsonElement testInput) throws SnapshotTestException, IOException {
+        SnapshotResult actual = SnapshotResultFactory.create(testInput);
+        this.takeSnapshot(testName, snapshotName, actual);
+    }
+
     public void takeSnapshot(String testName, String testInput) throws SnapshotTestException, IOException {
         SnapshotResult actual = SnapshotResultFactory.create(testInput);
         this.takeSnapshot(testName, actual);
+    }
+
+    public void takeSnapshot(String testName, String snapshotName, String testInput) throws SnapshotTestException, IOException {
+        SnapshotResult actual = SnapshotResultFactory.create(testInput);
+        this.takeSnapshot(testName, snapshotName, actual);
     }
 
     private void takeSnapshot(String testName, SnapshotResult actual) throws SnapshotTestException, IOException {
