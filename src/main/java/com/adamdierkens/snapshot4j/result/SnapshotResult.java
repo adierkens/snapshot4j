@@ -5,33 +5,6 @@ import com.google.gson.JsonElement;
 
 public abstract class SnapshotResult {
 
-
-    /**
-     * Creates an empty SnapshotResult
-     * @return a SnapshotResult instance
-     */
-    public static SnapshotResult create() {
-        return EmptyResult.INSTANCE;
-    }
-
-    /**
-     * Creates a SnapshotResult from a JsonElement
-     * @param element - The source JSON
-     * @return a SnapshotResult instance
-     */
-    public static SnapshotResult create(JsonElement element) {
-        return new JsonResult(element);
-    }
-
-    /**
-     * Creates a SnapshotResult from a String
-     * @param string - The source String
-     * @return a SnapshotResult instance
-     */
-    public static SnapshotResult create(String string) {
-        return new StringResult(string);
-    }
-
     /**
      * Gets the type of the stored result
      * @return - ResultType - The type of the stored result
@@ -45,6 +18,12 @@ public abstract class SnapshotResult {
      * @return A SnapshotTestException instance or null
      */
     public abstract SnapshotTestException compare(SnapshotResult other);
+
+    /**
+     * Gets a JSON serializable version of the result
+     * @return - a JsonElement instance
+     */
+    public abstract JsonElement toJson();
 
     @Override
     public boolean equals(Object obj) {

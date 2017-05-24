@@ -1,4 +1,3 @@
-String
-foo
-bar
-baz
+{
+  "DEFAULT": "foo\nbar\nbaz"
+}

@@ -1,11 +1,9 @@
 package com.adamdierkens.snapshot4j.SnapshotTest;
 
-import com.adamdierkens.snapshot4j.result.ResultType;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -117,10 +115,5 @@ public class SnapshotTestTest {
         obj.addProperty("otherRandomThing", "some other text");
 
         snapshotTest.takeSnapshot("multiLineJson", obj);
-    }
-
-    @Test
-    public void readEmptyStringSnapshot() throws Exception {
-        Assert.assertEquals(ResultType.Empty, snapshotTest.readSnapshot("stringEmpty").getType());
     }
 }

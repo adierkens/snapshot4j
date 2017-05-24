@@ -1,6 +1,7 @@
 package com.adamdierkens.snapshot4j.result;
 
 import com.adamdierkens.snapshot4j.SnapshotTest.SnapshotTestException;
+import com.google.gson.JsonElement;
 
 public class EmptyResult extends SnapshotResult {
 
@@ -16,6 +17,11 @@ public class EmptyResult extends SnapshotResult {
         if (!other.getType().equals(getType())) {
             return new SnapshotTestException(getType(), other.getType());
         }
+        return null;
+    }
+
+    @Override
+    public JsonElement toJson() {
         return null;
     }
 }
