@@ -35,6 +35,9 @@ public final class SnapshotResultFactory {
      * @return a SnapshotResult instance
      */
     public static SnapshotResult create(JsonElement element) {
+        if (element.isJsonPrimitive() && element.getAsJsonPrimitive().isNumber()) {
+            return new NumberResult(element.getAsJsonPrimitive().getAsNumber());
+        }
         return new JsonResult(element);
     }
 
@@ -46,6 +49,25 @@ public final class SnapshotResultFactory {
     public static SnapshotResult create(String string) {
         JsonElement je = new JsonPrimitive(string);
         return create(je);
+    }
+
+    /**
+     * Creates a SnapshotResult from a Number
+     * @param num - The source Number
+     * @return a SnapshotResult instance
+     */
+    public static SnapshotResult create(Number num) {
+        return new NumberResult(num);
+    }
+
+    /**
+     * Creates a SnapshotResult from a Number with a Range
+     * @param num - The source Number
+     * @param delta - An acceptance Range
+     * @return a SnapshotResult instance
+     */
+    public static SnapshotResult create(Number num, Number delta) {
+        return new NumberResult(num, delta);
     }
 
     private static String join(List<?> strings) {

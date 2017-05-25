@@ -137,4 +137,39 @@ public class SnapshotTestTest {
         snapshotTest.takeSnapshot("stringTest", "test2", testString);
         snapshotTest.takeSnapshot("stringTest", "This is a sample thing that I want to store");
     }
+
+    @Test
+    public void writingNumberTest() throws Exception {
+        Integer integer = 12345;
+        System.setProperty("updateSnapshot", "true");
+        snapshotTest.takeSnapshot("numberWriteTest", integer);
+        System.setProperty("updateSnapshot", "");
+        snapshotTest.takeSnapshot("numberWriteTest", integer);
+    }
+
+    @Test
+    public void workingNumberTest() throws Exception {
+        snapshotTest.takeSnapshot("numberReadTest", 123456);
+    }
+
+    @Test
+    public void workingNumberTestWithDelta() throws Exception {
+        snapshotTest.takeSnapshot("numberReadTest", 123457, 1);
+    }
+
+    @Test(expected = SnapshotTestException.class)
+    public void brokenNumberTest() throws Exception {
+        snapshotTest.takeSnapshot("numberReadTest", 123457);
+    }
+
+    @Test(expected = SnapshotTestException.class)
+    public void brokenNumberTestWithDelta() throws Exception {
+        snapshotTest.takeSnapshot("numberReadTest", 123457, 0.5);
+    }
+
+    @Test
+    public void workingFloatTest() throws Exception {
+        snapshotTest.takeSnapshot("numberReadTest", "float", 1.23456, 0.001);
+    }
+
 }

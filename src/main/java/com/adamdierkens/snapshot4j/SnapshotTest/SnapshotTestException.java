@@ -22,6 +22,10 @@ public class SnapshotTestException extends Exception {
         this(String.format("Snapshot result types differ. Got %s but expected %s", actual, expected));
     }
 
+    public SnapshotTestException(Number expected, Number actual, Number delta) {
+        this(String.format("Got %s but expected %s with delta %s", expected, actual, delta));
+    }
+
     public SnapshotTestException(SnapshotDiff diff) {
         this(diff.prettyPrintDiff());
     }
