@@ -153,6 +153,21 @@ public class SnapshotTestTest {
     }
 
     @Test
+    public void workingNumberTestWithDelta() throws Exception {
+        snapshotTest.takeSnapshot("numberReadTest", 123457, 1);
+    }
+
+    @Test(expected = SnapshotTestException.class)
+    public void brokenNumberTest() throws Exception {
+        snapshotTest.takeSnapshot("numberReadTest", 123457);
+    }
+
+    @Test(expected = SnapshotTestException.class)
+    public void brokenNumberTestWithDelta() throws Exception {
+        snapshotTest.takeSnapshot("numberReadTest", 123457, 0.5);
+    }
+
+    @Test
     public void workingFloatTest() throws Exception {
         snapshotTest.takeSnapshot("numberReadTest", "float", 1.23456, 0.001);
     }
