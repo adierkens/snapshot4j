@@ -2,6 +2,7 @@ package com.adamdierkens.snapshot4j.result;
 
 import com.adamdierkens.snapshot4j.SnapshotTest.SnapshotTestException;
 import com.adamdierkens.snapshot4j.diff.SnapshotDiffJson;
+import com.adamdierkens.snapshot4j.utils.JsonUtils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
@@ -17,7 +18,7 @@ public class JsonResult extends SnapshotResult {
     }
 
     public JsonResult(JsonElement element) {
-        jsonElement = element;
+        jsonElement = JsonUtils.sort(element);
     }
 
     @Override
