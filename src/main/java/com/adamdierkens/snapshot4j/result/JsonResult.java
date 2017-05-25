@@ -44,4 +44,9 @@ public class JsonResult extends SnapshotResult {
     public String toString() {
         return PP_GSON.toJson(jsonElement);
     }
+
+    @Override
+    public JsonElement toJson() {
+        return jsonElement;
+    }
 }

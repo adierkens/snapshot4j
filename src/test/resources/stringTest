@@ -1,2 +1,4 @@
-String
-This is a sample thing that I want to store
+{
+  "DEFAULT": "This is a sample thing that I want to store",
+  "foo": "This is another thing I want to store"
+}
