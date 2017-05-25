@@ -48,7 +48,7 @@ public class SnapshotTest {
     }
 
     private void takeSnapshot(String testName, String snapshotName, SnapshotResult actual) throws SnapshotTestException, IOException {
-        SnapshotResult storedResult = SnapshotResultFactory.read(snapshotDir, testName);
+        SnapshotResult storedResult = SnapshotResultFactory.read(snapshotDir, testName, snapshotName);
         String update = System.getProperty("updateSnapshot");
 
         if (update != null && update.length() != 0) {

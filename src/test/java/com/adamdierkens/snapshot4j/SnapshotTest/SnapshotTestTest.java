@@ -116,4 +116,25 @@ public class SnapshotTestTest {
 
         snapshotTest.takeSnapshot("multiLineJson", obj);
     }
+
+    @Test
+    public void workingStringDifferentName() throws Exception {
+        snapshotTest.takeSnapshot("stringTest", "foo", "This is another thing I want to store");
+    }
+
+    @Test(expected = SnapshotTestException.class)
+    public void brokenStringDifferentName() throws Exception {
+        snapshotTest.takeSnapshot("stringTest", "foo", "I didn't write this");
+    }
+
+    @Test
+    public void writingStringDifferentName() throws Exception {
+        String testString = getRandomString();
+        System.setProperty("updateSnapshot", "true");
+        snapshotTest.takeSnapshot("stringTest", "This is a sample thing that I want to store");
+        snapshotTest.takeSnapshot("stringTest", "test2", testString);
+        System.setProperty("updateSnapshot", "");
+        snapshotTest.takeSnapshot("stringTest", "test2", testString);
+        snapshotTest.takeSnapshot("stringTest", "This is a sample thing that I want to store");
+    }
 }
