@@ -76,6 +76,13 @@ public final class SnapshotResultFactory {
         }
     }
 
+    /**
+     * Fetch the current stored snapshot
+     * @param snapshotDir - The directory where snapshots are stored
+     * @param testName - The name of the test we're fetching
+     * @param snapshotName - The name of the snapshot we're fetching (optional)
+     * @return - A SnapshotResult of the stored snapshot
+     */
     public static SnapshotResult read(File snapshotDir, String testName, String snapshotName) {
 
         JsonObject storedObj = getStoredSnapshot(snapshotDir, testName);
@@ -91,6 +98,12 @@ public final class SnapshotResultFactory {
         return create();
     }
 
+    /**
+     * Fetch the current stored snapshot
+     * @param snapshotDir - The directory where snapshots are stored
+     * @param testName - The name of the test we're fetching
+     * @return - A SnapshotResult of the stored snapshot
+     */
     public static SnapshotResult read(File snapshotDir, String testName) {
         return read(snapshotDir, testName, DEFAULT_SNAPSHOTNAME);
     }
@@ -136,6 +149,14 @@ public final class SnapshotResultFactory {
         return new JsonObject();
     }
 
+    /**
+     * Append a result to a snapshot on disk.
+     * @param snapshotDir - The directory where snapshots are stored
+     * @param testName - The name of the test we're storing
+     * @param snapshotName - The name of the snapshot we're storing
+     * @param result - The SnapshotResult to store
+     * @throws IOException - When failing to read/write a file
+     */
     public static void append(File snapshotDir, String testName, String snapshotName, SnapshotResult result)  throws IOException {
         JsonObject storedObj = getStoredSnapshot(snapshotDir, testName);
 
