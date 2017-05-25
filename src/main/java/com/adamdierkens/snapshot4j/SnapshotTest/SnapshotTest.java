@@ -23,6 +23,8 @@ public class SnapshotTest {
         this.snapshotDir = saveDir;
     }
 
+    // JsonElement
+
     public void takeSnapshot(String testName, JsonElement testInput) throws SnapshotTestException, IOException {
         SnapshotResult actual = SnapshotResultFactory.create(testInput);
         this.takeSnapshot(testName, actual);
@@ -33,6 +35,8 @@ public class SnapshotTest {
         this.takeSnapshot(testName, snapshotName, actual);
     }
 
+    // String
+
     public void takeSnapshot(String testName, String testInput) throws SnapshotTestException, IOException {
         SnapshotResult actual = SnapshotResultFactory.create(testInput);
         this.takeSnapshot(testName, actual);
@@ -40,6 +44,30 @@ public class SnapshotTest {
 
     public void takeSnapshot(String testName, String snapshotName, String testInput) throws SnapshotTestException, IOException {
         SnapshotResult actual = SnapshotResultFactory.create(testInput);
+        this.takeSnapshot(testName, snapshotName, actual);
+    }
+
+    // Numbers
+
+    public void takeSnapshot(String testName, Number testInput) throws SnapshotTestException, IOException {
+        SnapshotResult actual = SnapshotResultFactory.create(testInput);
+        this.takeSnapshot(testName, actual);
+    }
+
+    public void takeSnapshot(String testName, String snapshotName, Number testInput) throws SnapshotTestException, IOException {
+        SnapshotResult actual = SnapshotResultFactory.create(testInput);
+        this.takeSnapshot(testName, snapshotName, actual);
+    }
+
+    // Numbers with delta
+
+    public void takeSnapshot(String testName, Number testInput, Number delta) throws SnapshotTestException, IOException {
+        SnapshotResult actual = SnapshotResultFactory.create(testInput, delta);
+        this.takeSnapshot(testName, actual);
+    }
+
+    public void takeSnapshot(String testName, String snapshotName, Number testInput, Number delta) throws SnapshotTestException, IOException {
+        SnapshotResult actual = SnapshotResultFactory.create(testInput, delta);
         this.takeSnapshot(testName, snapshotName, actual);
     }
 
