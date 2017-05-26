@@ -1,12 +1,12 @@
 package com.adamdierkens.snapshot4j.utils;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import com.google.gson.*;
 
 import java.util.Map;
 
 public final class JsonUtils {
+    public static final Gson PP_GSON = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
+
     private JsonUtils() {}
 
 
