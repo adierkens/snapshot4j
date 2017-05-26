@@ -4,6 +4,7 @@ import difflib.Delta;
 import difflib.DiffUtils;
 import org.fusesource.jansi.Ansi;
 
+import java.util.Iterator;
 import java.util.List;
 
 public abstract class SnapshotDiff {
@@ -35,7 +36,8 @@ public abstract class SnapshotDiff {
         while(line < expected.size()) {
             boolean alreadyPrinted = false;
 
-            for (Delta<String> delta : deltas) {
+            for (Iterator<Delta<String>> iterator = deltas.iterator(); iterator.hasNext();) {
+                Delta<String> delta = iterator.next();
                 if (delta.getOriginal().getPosition() == line) {
 
                     if (delta.getType().equals(Delta.TYPE.CHANGE)) {
@@ -51,7 +53,7 @@ public abstract class SnapshotDiff {
                         diffResult = appendAdded(diffResult, delta.getRevised().getLines()).append("\n");
                     }
 
-                    deltas.remove(delta);
+                    iterator.remove();
                 }
             }
 
