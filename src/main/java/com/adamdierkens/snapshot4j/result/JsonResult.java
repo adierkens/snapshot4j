@@ -3,14 +3,11 @@ package com.adamdierkens.snapshot4j.result;
 import com.adamdierkens.snapshot4j.SnapshotTest.SnapshotTestException;
 import com.adamdierkens.snapshot4j.diff.SnapshotDiffJson;
 import com.adamdierkens.snapshot4j.utils.JsonUtils;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonNull;
 
 public class JsonResult extends SnapshotResult {
 
-    private static final Gson PP_GSON = new GsonBuilder().setPrettyPrinting().create();
     private JsonElement jsonElement;
 
     public JsonResult() {
@@ -43,7 +40,7 @@ public class JsonResult extends SnapshotResult {
 
     @Override
     public String toString() {
-        return PP_GSON.toJson(jsonElement);
+        return JsonUtils.PP_GSON.toJson(jsonElement);
     }
 
     @Override
