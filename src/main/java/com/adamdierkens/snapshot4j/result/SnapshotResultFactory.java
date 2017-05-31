@@ -1,5 +1,6 @@
 package com.adamdierkens.snapshot4j.result;
 
+import com.adamdierkens.snapshot4j.utils.JsonUtils;
 import com.google.gson.*;
 
 import java.io.File;
@@ -17,7 +18,6 @@ public final class SnapshotResultFactory {
 
     public static final String DEFAULT_SNAPSHOTNAME = "DEFAULT";
     private static final JsonParser JSON_PARSER = new JsonParser();
-    private static final Gson PP_GSON = new GsonBuilder().setPrettyPrinting().create();
 
     private SnapshotResultFactory() {}
 
@@ -191,7 +191,7 @@ public final class SnapshotResultFactory {
 
         storedObj.add(snapshotName, resultElement);
         Path file = Paths.get(snapshotDir.getAbsolutePath(), testName);
-        List<String> lines = Arrays.asList(PP_GSON.toJson(storedObj));
+        List<String> lines = Arrays.asList(JsonUtils.PP_GSON.toJson(storedObj));
         Files.write(file, lines, Charset.forName("UTF-8"));
     }
 }
